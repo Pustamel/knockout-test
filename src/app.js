@@ -73,6 +73,7 @@ function AppViewModel () {
     this.draggedItemNew = item
     this.draggedItemNewDOM(event.currentTarget)
     event.target.classList.add('dragging')
+    event.dataTransfer.dropEffect = 'move'
     event.dataTransfer.setDragImage(new Image(), 0, 0)
   }
 
@@ -95,7 +96,6 @@ function AppViewModel () {
   }
 
   this.dropElement = (item, event) => {
-    console.log(item, this.draggedItemNew)
     event.preventDefault()
     if (JSON.stringify(item) !== JSON.stringify(this.draggedItemNew) && this.draggedItemNew) {
       const fromIndex = findIndex(this.newItems, this.draggedItemNew)
@@ -118,7 +118,7 @@ function AppViewModel () {
   // DRAG CATEGORY
   this.draggedCategory = null
 
-  this.dragCategory = (item, event) => {
+  this.dragCategory = (item) => {
     this.draggedCategory = item
   }
 
@@ -127,13 +127,13 @@ function AppViewModel () {
   }
 
   this.dragEnterCategory = (item, event) => {
-    if (item !== this.draggedCategory && this.draggedCategory) {
+    const isCategoryMoving = item.id !== this.draggedCategory.id && this.draggedCategory?.type === 'category' && item.type === 'category'
+    if (isCategoryMoving) {
       event.target.classList.add('drag-over__category')
     }
   }
 
   this.dragLeaveCategory = (item, event) => {
-    console.log('leave')
     event.target.classList.remove('drag-over__category')
   }
 
