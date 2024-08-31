@@ -1,0 +1,76 @@
+details {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    max-width: 600px;
+}
+details > summary {
+    list-style-type: none;
+}
+summary::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    width: 12px;
+    height: 12px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translateY(20%);
+    transition: transform 0.2s ease-in-out;
+}
+details > summary::before {
+    background-image: url("./assets/arrow.svg")
+}
+summary {
+    padding-left: 15px;
+}
+details[open] > summary::before {
+    background-image: url("./assets/arrow.svg");
+    transform: translateY(20%) rotate(90deg);
+}
+summary {
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.details__body__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-top: 1px solid #eee;
+    background-color: #e6e8ff;
+}
+.details__body__item:first-child {
+    border-top: none;
+}
+.details__body__item .handle {
+    cursor: move;
+    color: #888;
+    padding-right: 10px;
+}
+.details__body__item-title {
+    padding-left: 10px;
+}
+.details {
+    margin-top: 10px;
+}
+
+.drag-over__element-list {
+    opacity: 0.3;
+    border-bottom: 3px solid blue;
+}
+
+.drag-over__category {
+
+}
+
+.dragging {
+    /*position: absolute;*/
+    box-shadow: 1px 1px 10px 1px #DFE4EF;
+    width: 610px;
+    height: 30px;
+    border: 1px solid ;
+    /*background-color: #ffb0b0;*/
+}

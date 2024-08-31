@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link
+   rel="stylesheet"
+   href="./items.css"
+  >
+  <title>Knockout test</title>
+</head>
+<body>
+
+<div class="container-details" data-bind="foreach: newItems">
+  <details data-bind="event: {
+      dragover: $parent.dragOverCategory,
+      dragenter: $parent.dragEnterCategory,
+      dragleave: $parent.dragLeaveCategory,
+      drop: $parent.dropCategory,
+      dragend: $parent.dragEndCategory,
+      drag: $parent.dragCategory,
+      dragover: $parent.dragOverCategory
+      }" draggable="true" class="details">
+    <summary class="details__title" data-bind="text: $data.title">Обязательные для всех</summary>
+
+    <div draggable="true" class="details__body" data-bind="foreach: $data.elements" >
+      <div draggable="true" class="details__body__item" data-bind="event: {
+      dragover: $parentContext.$parent.dragOverElement,
+      dragenter: $parentContext.$parent.dragEnterElement,
+      dragleave: $parentContext.$parent.dragLeaveElement,
+      drop: $parentContext.$parent.dropElement,
+      dragend: $parentContext.$parent.dragEndElement,
+      drag: $parentContext.$parent.dragElement,
+      dragover: $parentContext.$parent.dragOver
+      }">
+        <span class="details__body__item-title" data-bind="text: $data.title"></span>
+        <span class="handle">↕</span>
+      </div>
+    </div>
+  </details>
+</div>
+
+<script type='text/javascript' src="knockout-3.5.1.js"></script>
+<script type="text/javascript" src="app.js"></script>
+
+</body>
+</html>
